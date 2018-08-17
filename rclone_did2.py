@@ -15,6 +15,7 @@ root.attributes('-fullscreen', True)
 #root.wm_state('zoomed')
 #root.configure(background='black')
 
+os.system('rclone sync hongikdid: ~/did')
 files = os.listdir('.')
 im_files = []
 for f in files:
