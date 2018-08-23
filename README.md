@@ -17,7 +17,7 @@ rclone_did2.py : Python 2.X 및 rclone 클라이언트 사용
 # software
 <pre>1. Raspbian with Desktop(https://www.raspberrypi.org/downloads/raspbian/)
 2. Etcher(https://etcher.io/)
-3. https://www.realvnc.com/en/connect/download/viewer/)</pre>
+3. VNC Viewer(https://www.realvnc.com/en/connect/download/viewer/)</pre>
 
 # install
 1. 기본 설정
