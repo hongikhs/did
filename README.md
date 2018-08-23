@@ -7,7 +7,8 @@ dbx_did2.py : Python 2.X 및 드롭박스 API v2를 사용하여 통합 설계�
 rclone_did2.py : Python 2.X 및 rclone 클라이언트 사용
 * rclone 클라이언트는 안정적으로 동작하며 sudo apt-get install rclone 명령으로 간단하게 설치됨</pre>
 
-
+# 준비물
+<pre>1. Win32DiskImager(https://sourceforge.net/projects/win32diskimager/)</pre>
 1. 기본 설정
 - 키보드 Asia/Seoul
 - SSH, VNC 활성화
