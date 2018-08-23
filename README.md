@@ -7,44 +7,55 @@ dbx_did2.py : Python 2.X 및 드롭박스 API v2를 사용하여 통합 설계�
 rclone_did2.py : Python 2.X 및 rclone 클라이언트 사용
 * rclone 클라이언트는 안정적으로 동작하며 sudo apt-get install rclone 명령으로 간단하게 설치됨</pre>
 
-# 준비물
-<pre>1. Win32DiskImager(https://sourceforge.net/projects/win32diskimager/)</pre>
+# hardware
+<pre>1. 라즈베리파이
+2. SDHC 메모리카드(8GB 이상)
+3. HDMI 케이블
+4. Micro USB 케이블
+5. 키보드와 마우스</pre>
+
+# software
+<pre>1. Raspbian with Desktop(https://www.raspberrypi.org/downloads/raspbian/)
+2. Etcher(https://etcher.io/)
+3. https://www.realvnc.com/en/connect/download/viewer/)</pre>
+
+# install
 1. 기본 설정
-- 키보드 Asia/Seoul
-- SSH, VNC 활성화
+<pre>키보드 Asia/Seoul
+SSH, VNC 활성화</pre>
 
 2. 네트워크 설정
-- sudo nano /etc/dhcpcd.conf
-- IP주소 입력
+<pre>sudo nano /etc/dhcpcd.conf
+IP주소 입력</pre>
 
 3. 한글폰트 설치
-- sudo apt-get install fonts-unfonts-core
+<pre>sudo apt-get install fonts-unfonts-core</pre>
 
 4. 파이썬 라이브러리 설치
-sudo apt-get install python-imaging-tk
+<pre>sudo apt-get install python-imaging-tk</pre>
 
 5. rclone 설치 / 설정
-- curl https://rclone.org/install.sh | sudo bash
-- mkdir did
-- rclone config
-- rclone sync hongikdid: ~/did
+<pre>curl https://rclone.org/install.sh | sudo bash
+mkdir did
+rclone config
+rclone sync hongikdid: ~/did</pre>
 
 6. 프로그램 테스트
-- python ~/did/rclone_did2.py
+<pre>python ~/did/rclone_did2.py</pre>
 
 7. 자동실행 설정
-sudo nano ~/did.sh
-sudo nano ~/.config/lxsession/LXDE-pi/autostart
+<pre>sudo nano ~/did.sh
+sudo nano ~/.config/lxsession/LXDE-pi/autostart</pre>
 
 8. 화면보호기 설정
-- sudo apt-get install xscreensaver
-- 실행하여 화면보호기 끄기
+<pre>sudo apt-get install xscreensaver
+실행하여 화면보호기 끄기</pre>
 
 9. 자동종료 설정
-- sudo crontab -e
+<pre>sudo crontab -e</pre>
 
 10. 암호 바꾸기
-- sudo passwd
+<pre>sudo passwd</pre>
 
 11. 기타
-- 블투, 무선랜, 소리 끄기
+<pre>블루투스, 무선랜, 소리 끄기</pre>
