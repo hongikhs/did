@@ -37,22 +37,35 @@ IP주소 입력</pre>
 5. rclone 설치 / 설정
 <pre>curl https://rclone.org/install.sh | sudo bash
 mkdir did
+cd did
 rclone config
-rclone sync hongikdid: ~/did</pre>
+rclone sync hongikdid: .</pre>
 
 6. 프로그램 테스트
-<pre>python ~/did/rclone_did2.py</pre>
+<pre>python rclone_did2.py</pre>
 
 7. 자동실행 설정
-<pre>sudo nano ~/did.sh
-sudo nano ~/.config/lxsession/LXDE-pi/autostart</pre>
+<pre>cd ..
+nano did.sh
+##########
+cd ~/did
+rclone sync hongikdid: .
+python rclone_did2.py
+##########
+chmod +x did.sh
+nano .config/lxsession/LXDE-pi/autostart
+##########
+@/home/pi/did.sh
+##########
+</pre>
 
 8. 화면보호기 설정
 <pre>sudo apt-get install xscreensaver
 실행하여 화면보호기 끄기</pre>
 
 9. 자동종료 설정
-<pre>sudo crontab -e</pre>
+<pre>sudo crontab -e
+@reboot /sbin/shutdown -h 16:00</pre>
 
 10. 암호 바꾸기
 <pre>sudo passwd</pre>
