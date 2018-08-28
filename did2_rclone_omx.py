@@ -19,7 +19,7 @@ os.system('rclone sync hongikdid: ~/did')
 files = os.listdir('.')
 im_files = []
 for f in files:
-    if f.endswith('.jpg') or f.endswith('.png') or f.endswith('.mp4'):
+    if f.endswith('.jpg') or f.endswith('.png'):
         im_files.append(f)
 #print(im_files)
 im = ImageTk.PhotoImage(Image.open(im_files.pop(0)).resize((w,h),Image.ANTIALIAS))
@@ -39,11 +39,12 @@ def im_update():
         f = im_files.pop(0)
         if f.endswith('.mp4'):
             os.system('omxplayer -b ' + f)
+            root.after(0, im_update)
         else:
             im = ImageTk.PhotoImage(Image.open(f).resize((w,h),Image.ANTIALIAS))
             la.configure(image=im)
             la.image = im
-        root.after(delay, im_update)
+            root.after(delay, im_update)
     except:
         print('file open errer')
         im_update()
