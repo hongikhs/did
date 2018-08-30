@@ -24,7 +24,7 @@ for f in files:
     if f.lower.endswith('.jpg') or f.lower.endswith('.png'):
         im_files.append(f)
 #print(im_files)
-im = ImageTk.PhotoImage(Image.open(im_files.pop(0)).resize((w,h-50),Image.ANTIALIAS))
+im = ImageTk.PhotoImage(Image.open(im_files.pop(0)).resize((w,h),Image.ANTIALIAS))
 la = Label(root, image=im, bg='black')
 lb = label(root, text = '홍대부고 SW교육봉사 동아리')
 la.pack()       
