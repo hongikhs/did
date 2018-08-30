@@ -36,7 +36,7 @@ def im_update():
     if len(im_files) == 0:
         files = os.listdir('.')
         for f in files:
-            if f.lower().endswith('.jpg') or f.lower().endswith('.png') or f.lower().endswith('.mp4') or f.lower.endswith('.mkv') or f.lower.endswith('.avi'):
+            if f.lower().endswith('.jpg') or f.lower().endswith('.png') or f.lower().endswith('.mp4') or f.lower().endswith('.mkv') or f.lower().endswith('.avi'):
                 im_files.append(f)
         print(im_files)
     try:
