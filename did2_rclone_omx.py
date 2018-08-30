@@ -21,13 +21,13 @@ os.system('rclone sync hongikdid: ~/did')
 files = os.listdir('.')
 im_files = []
 for f in files:
-    if f.lower.endswith('.jpg') or f.lower.endswith('.png'):
+    if f.lower().endswith('.jpg') or f.lower().endswith('.png'):
         im_files.append(f)
 #print(im_files)
 im = ImageTk.PhotoImage(Image.open(im_files.pop(0)).resize((w,h),Image.ANTIALIAS))
 la = Label(root, image=im, bg='black')
 #lb = label(root, text = '홍대부고 SW교육봉사 동아리')
-la.pack()       
+la.pack()
 #lb.pack()
 
 def im_update():
@@ -36,7 +36,7 @@ def im_update():
     if len(im_files) == 0:
         files = os.listdir('.')
         for f in files:
-            if f.lower.endswith('.jpg') or f.lower.endswith('.png') or f.lower.endswith('.mp4') or f.lower.endswith('.mkv') or f.lower.endswith('.avi'):
+            if f.lower().endswith('.jpg') or f.lower().endswith('.png') or f.lower().endswith('.mp4') or f.lower.endswith('.mkv') or f.lower.endswith('.avi'):
                 im_files.append(f)
         print(im_files)
     try:
