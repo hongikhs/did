@@ -8,7 +8,7 @@ import os
 delay = 3000
 root = Tk()
 w, h = root.winfo_screenwidth(), root.winfo_screenheight()
-factor_screen = w / h
+factor_screen = 1.0 * w / h
 #root.overrideredirect(True)
 root.geometry("%dx%d+0+0" % (w, h))
 #root.focus_set()
@@ -27,7 +27,7 @@ for f in files:
 f = im_files.pop(0)
 pic = Image.open(f)
 pic_w, pic_h = pic.size
-factor_pic = pic_w / pic_h
+factor_pic = 1.0 * pic_w / pic_h
 if factor_pic > factor_screen:
     disp_w = w
     disp_h = pic_h * disp_w / pic_w
@@ -58,7 +58,8 @@ def im_update():
         else:
             pic = Image.open(f)
             pic_w, pic_h = pic.size
-            factor_pic = pic_w / pic_h
+            factor_pic = 1.0 * pic_w / pic_h
+            print(f, pic.size, factor_pic)
             if factor_pic > factor_screen:
                 disp_w = w
                 disp_h = pic_h * disp_w / pic_w
