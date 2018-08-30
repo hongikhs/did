@@ -7,6 +7,7 @@ import os
 
 delay = 3000
 root = Tk()
+root.configure(background='black')
 w, h = root.winfo_screenwidth(), root.winfo_screenheight()
 factor_screen = 1.0 * w / h
 #root.overrideredirect(True)
@@ -18,7 +19,7 @@ root.attributes('-fullscreen', True)
 #root.wm_state('zoomed')
 #root.configure(background='black')
 
-os.system('rclone sync hongikdid: ~/did')
+#os.system('rclone sync hongikdid: ~/did')
 files = os.listdir('.')
 im_files = []
 for f in files:
