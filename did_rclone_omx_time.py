@@ -21,7 +21,7 @@ w, h = root.winfo_screenwidth(), root.winfo_screenheight() - status_bar_height
 
 factor_screen = 1.0 * w / h
 root.geometry("%dx%d+0+0" % (w, h))
-root.overrideredirect(True) # True for macOS
+root.overrideredirect(False) # True for macOS
 root.attributes('-fullscreen', True)
 root.attributes('-topmost', True)
 #root.focus_set()
