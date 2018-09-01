@@ -13,28 +13,33 @@ sync = False
 delay = 3000
 status_bar_height = 50
 font_name = 'Arial'
-font_size = 34
-dept = '홍익대학교사범대학부속고등학교'
+font_size = 36
 
 root = Tk()
 root.configure(background='black')
 w, h = root.winfo_screenwidth(), root.winfo_screenheight() - status_bar_height
+
 factor_screen = 1.0 * w / h
-root.overrideredirect(True)
 root.geometry("%dx%d+0+0" % (w, h))
+root.overrideredirect(True) # True for macOS
 root.attributes('-fullscreen', True)
 root.attributes('-topmost', True)
 #root.focus_set()
 #root.bind("<Escape>", lambda e: root.quit())
 #root.wm_state('zoomed')
 
-def date_and_time():
+def the_date():
     now = datetime.now()
     MM = str(now.month)
     DD = str(now.day)
+    dd = ['월', '화', '수', '목', '금', '토', '일'][datetime.today().weekday()]
+    return MM+'월 '+DD+'일('+dd+')'
+
+def the_time():
+    now = datetime.now()
     hh = str(now.hour)
     mm = str('%02d'%now.minute)
-    return MM+'월 '+DD+'일    '+hh+':'+mm
+    return hh+':'+mm
 
 files = os.listdir('.')
 im_files = []
@@ -55,13 +60,13 @@ else:
     disp_w = pic_w * disp_h / pic_h
 im = ImageTk.PhotoImage(pic.resize((disp_w,disp_h),Image.ANTIALIAS))
 label_pic = Label(root, image=im, anchor="center", bg='black')
-label_date = Label(root, text=date_and_time(), font=(font_name, font_size), anchor='w', bg='black', fg='grey')
-label_dept = Label(root, text=dept, font=(font_name, font_size), bg='black', fg='grey')
-label_count = Label(root, text=str(pic_num)+'/'+str(pic_max), font=(font_name, font_size), anchor='e', bg='black', fg='grey')
+label_left = Label(root, text=the_date(), font=(font_name, font_size), anchor='w', bg='black', fg='grey')
+label_center = Label(root, text=the_time(), font=(font_name, font_size), bg='black', fg='grey')
+label_right = Label(root, text=str(pic_num)+'/'+str(pic_max), font=(font_name, font_size), anchor='e', bg='black', fg='grey')
 label_pic.place(x=0, y=0, width=w, height=h)
-label_date.place(x=0, y=h, width=w/4)
-label_dept.place(x=w/4, y=h, width=w/2)
-label_count.place(x=w*3/4, y=h, width=w/4)
+label_left.place(x=0, y=h, width=w/4)
+label_center.place(x=w/4, y=h, width=w/2)
+label_right.place(x=w*3/4, y=h, width=w/4)
 
 def im_update():
     global im_files
@@ -97,8 +102,9 @@ def im_update():
             im = ImageTk.PhotoImage(pic.resize((disp_w,disp_h),Image.ANTIALIAS))
             label_pic.configure(image=im)
             label_pic.image = im
-            label_date.configure(text=date_and_time())
-            label_count.configure(text=str(pic_num)+'/'+str(pic_max))
+            label_left.configure(text=the_date())
+            label_center.configure(text=the_time())
+            label_right.configure(text=str(pic_num)+'/'+str(pic_max))
             root.after(delay, im_update)
     except:
         print('file open errer')
