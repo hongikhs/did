@@ -1,6 +1,9 @@
 # -*- coding: utf8 -*-
 
-from Tkinter import *
+try:
+    from Tkinter import *
+except ImportError:
+    from tkinter import *
 from PIL import Image
 from PIL import ImageTk
 from datetime import datetime
@@ -8,15 +11,19 @@ import os
 
 sync = False
 delay = 3000
+status_bar_height = 50
+font_name = 'Arial'
+font_size = 34
+dept = '홍익대학교사범대학부속고등학교'
 
 root = Tk()
 root.configure(background='black')
-w, h = root.winfo_screenwidth(), root.winfo_screenheight()-50
+w, h = root.winfo_screenwidth(), root.winfo_screenheight() - status_bar_height
 factor_screen = 1.0 * w / h
 root.overrideredirect(True)
 root.geometry("%dx%d+0+0" % (w, h))
 root.attributes('-fullscreen', True)
-#root.attributes('-topmost', True)
+root.attributes('-topmost', True)
 #root.focus_set()
 #root.bind("<Escape>", lambda e: root.quit())
 #root.wm_state('zoomed')
@@ -26,15 +33,16 @@ def date_and_time():
     MM = str(now.month)
     DD = str(now.day)
     hh = str(now.hour)
-    mm = str(now.minute)
-    return MM+'월 '+DD+'일    '+hh+':'+mm+'    홍대부고 SW교육봉사 동아리'
+    mm = str('%02d'%now.minute)
+    return MM+'월 '+DD+'일    '+hh+':'+mm
 
-#os.system('rclone sync hongikdid: ~/did')
 files = os.listdir('.')
 im_files = []
 for f in files:
     if f.lower().endswith('.jpg') or f.lower().endswith('.png'):
         im_files.append(f)
+pic_max = len(im_files)
+pic_num = 1
 f = im_files.pop(0)
 pic = Image.open(f)
 pic_w, pic_h = pic.size
@@ -46,13 +54,18 @@ else:
     disp_h = h
     disp_w = pic_w * disp_h / pic_h
 im = ImageTk.PhotoImage(pic.resize((disp_w,disp_h),Image.ANTIALIAS))
-la = Label(root, image=im, anchor="center", bg='black', width=w, height=h)
-lb = Label(root, text=date_and_time(), anchor="s", width=w, height=50, font=('Courier, 34'), bg='black', fg='grey')
-la.pack()
-lb.pack()
+label_pic = Label(root, image=im, anchor="center", bg='black')
+label_date = Label(root, text=date_and_time(), font=(font_name, font_size), anchor='w', bg='black', fg='grey')
+label_dept = Label(root, text=dept, font=(font_name, font_size), bg='black', fg='grey')
+label_count = Label(root, text=str(pic_num)+'/'+str(pic_max), font=(font_name, font_size), anchor='e', bg='black', fg='grey')
+label_pic.place(x=0, y=0, width=w, height=h)
+label_date.place(x=0, y=h, width=w/4)
+label_dept.place(x=w/4, y=h, width=w/2)
+label_count.place(x=w*3/4, y=h, width=w/4)
 
 def im_update():
     global im_files
+    global pic_max, pic_num
     if sync:
         os.system('rclone sync hongikdid: ~/did')
     if len(im_files) == 0:
@@ -60,9 +73,12 @@ def im_update():
         for f in files:
             if f.lower().endswith('.jpg') or f.lower().endswith('.png') or f.lower().endswith('.mp4') or f.lower().endswith('.mkv') or f.lower().endswith('.avi'):
                 im_files.append(f)
-        print(im_files)
+        #print(im_files)
+        pic_max = len(im_files)
+        pic_num = 0
     try:
         f = im_files.pop(0)
+        pic_num += 1
         print(f, len(im_files))
         if f.lower().endswith('.mp4'):
             os.system('omxplayer -b ' + f)
@@ -71,7 +87,7 @@ def im_update():
             pic = Image.open(f)
             pic_w, pic_h = pic.size
             factor_pic = 1.0 * pic_w / pic_h
-            print(f, pic.size, factor_pic)
+            #print(f, pic.size, factor_pic)
             if factor_pic > factor_screen:
                 disp_w = w
                 disp_h = pic_h * disp_w / pic_w
@@ -79,9 +95,10 @@ def im_update():
                 disp_h = h
                 disp_w = pic_w * disp_h / pic_h
             im = ImageTk.PhotoImage(pic.resize((disp_w,disp_h),Image.ANTIALIAS))
-            la.configure(image=im)
-            la.image = im
-            lb.configure(text=date_and_time())
+            label_pic.configure(image=im)
+            label_pic.image = im
+            label_date.configure(text=date_and_time())
+            label_count.configure(text=str(pic_num)+'/'+str(pic_max))
             root.after(delay, im_update)
     except:
         print('file open errer')
