@@ -9,7 +9,7 @@ from PIL import ImageTk
 from datetime import datetime
 import os
 
-sync = False
+sync = True
 delay = 3000
 status_bar_height = 50
 font_name = 'Arial'
