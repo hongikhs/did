@@ -82,7 +82,7 @@ def im_update():
         for f in files:
             if f.lower().endswith('.jpg') or f.lower().endswith('.png') or f.lower().endswith('.mp4') or f.lower().endswith('.mkv') or f.lower().endswith('.avi'):
                 im_files.append(f)
-        im_flies.sort()
+        im_files.sort()
         print(im_files)
         pic_max = len(im_files)
         pic_num = 0
