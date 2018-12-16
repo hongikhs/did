@@ -54,10 +54,10 @@ pic_w, pic_h = pic.size
 factor_pic = 1.0 * pic_w / pic_h
 if factor_pic > factor_screen:
     disp_w = w
-    disp_h = pic_h * disp_w / pic_w
+    disp_h = int(pic_h * disp_w / pic_w)
 else:
     disp_h = h
-    disp_w = pic_w * disp_h / pic_h
+    disp_w = int(pic_w * disp_h / pic_h)
 im = ImageTk.PhotoImage(pic.resize((disp_w,disp_h),Image.ANTIALIAS))
 label_pic = Label(root, image=im, anchor="center", bg='black')
 label_left = Label(root, text=the_date(), font=(font_name, font_size), anchor='w', bg='black', fg='grey')
