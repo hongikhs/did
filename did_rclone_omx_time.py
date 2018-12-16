@@ -9,14 +9,16 @@ from PIL import ImageTk
 from datetime import datetime
 import os
 
-sync = True
-delay = 3000
-status_bar_height = 50
-font_name = 'Arial'
-font_size = 36
-
 root = Tk()
 root.configure(background='black')
+
+sync = True
+delay = 3000
+font_name = 'Arial'
+status_bar_height = root.winfo_screenheight() / 30
+font_size = status_bar_height * 2 / 3
+font_color = 'white'
+
 w, h = root.winfo_screenwidth(), root.winfo_screenheight() - status_bar_height
 
 factor_screen = 1.0 * w / h
@@ -58,11 +60,11 @@ if factor_pic > factor_screen:
 else:
     disp_h = h
     disp_w = int(pic_w * disp_h / pic_h)
-im = ImageTk.PhotoImage(pic.resize((disp_w,disp_h),Image.ANTIALIAS))
+im = ImageTk.PhotoImage(pic.resize((w,h),Image.ANTIALIAS))
 label_pic = Label(root, image=im, anchor="center", bg='black')
-label_left = Label(root, text=the_date(), font=(font_name, font_size), anchor='w', bg='black', fg='grey')
-label_center = Label(root, text=the_time(), font=(font_name, font_size), bg='black', fg='grey')
-label_right = Label(root, text=str(pic_num)+'/'+str(pic_max), font=(font_name, font_size), anchor='e', bg='black', fg='grey')
+label_left = Label(root, text=the_date(), font=(font_name, font_size), anchor='w', bg='black', fg=font_color)
+label_center = Label(root, text=the_time(), font=(font_name, font_size), bg='black', fg=font_color)
+label_right = Label(root, text=str(pic_num)+'/'+str(pic_max), font=(font_name, font_size), anchor='e', bg='black', fg=font_color)
 label_pic.place(x=0, y=0, width=w, height=h)
 label_left.place(x=0, y=h, width=w/4)
 label_center.place(x=w/4, y=h, width=w/2)
@@ -99,7 +101,7 @@ def im_update():
             else:
                 disp_h = h
                 disp_w = pic_w * disp_h / pic_h
-            im = ImageTk.PhotoImage(pic.resize((disp_w,disp_h),Image.ANTIALIAS))
+            im = ImageTk.PhotoImage(pic.resize((w,h),Image.ANTIALIAS))
             label_pic.configure(image=im)
             label_pic.image = im
             label_left.configure(text=the_date())
