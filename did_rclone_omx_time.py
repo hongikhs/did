@@ -15,8 +15,8 @@ root.configure(background='black')
 sync = True
 delay = 3000
 font_name = 'Arial'
-status_bar_height = root.winfo_screenheight() / 30
-font_size = status_bar_height * 2 / 3
+status_bar_height = int(root.winfo_screenheight() / 30)
+font_size = int(status_bar_height * 2 / 3)
 font_color = 'white'
 
 w, h = root.winfo_screenwidth(), root.winfo_screenheight() - status_bar_height
@@ -48,6 +48,7 @@ im_files = []
 for f in files:
     if f.lower().endswith('.jpg') or f.lower().endswith('.png'):
         im_files.append(f)
+im_files.sort()
 pic_max = len(im_files)
 pic_num = 1
 f = im_files.pop(0)
@@ -60,7 +61,8 @@ if factor_pic > factor_screen:
 else:
     disp_h = h
     disp_w = int(pic_w * disp_h / pic_h)
-im = ImageTk.PhotoImage(pic.resize((w,h),Image.ANTIALIAS))
+#im = ImageTk.PhotoImage(pic.resize((w,h),Image.ANTIALIAS))
+im = ImageTk.PhotoImage(pic.resize((disp_w,disp_h),Image.ANTIALIAS))
 label_pic = Label(root, image=im, anchor="center", bg='black')
 label_left = Label(root, text=the_date(), font=(font_name, font_size), anchor='w', bg='black', fg=font_color)
 label_center = Label(root, text=the_time(), font=(font_name, font_size), bg='black', fg=font_color)
@@ -80,7 +82,8 @@ def im_update():
         for f in files:
             if f.lower().endswith('.jpg') or f.lower().endswith('.png') or f.lower().endswith('.mp4') or f.lower().endswith('.mkv') or f.lower().endswith('.avi'):
                 im_files.append(f)
-        #print(im_files)
+        im_flies.sort()
+        print(im_files)
         pic_max = len(im_files)
         pic_num = 0
     try:
@@ -97,11 +100,12 @@ def im_update():
             #print(f, pic.size, factor_pic)
             if factor_pic > factor_screen:
                 disp_w = w
-                disp_h = pic_h * disp_w / pic_w
+                disp_h = int(pic_h * disp_w / pic_w)
             else:
                 disp_h = h
-                disp_w = pic_w * disp_h / pic_h
-            im = ImageTk.PhotoImage(pic.resize((w,h),Image.ANTIALIAS))
+                disp_w = int(pic_w * disp_h / pic_h)
+            #im = ImageTk.PhotoImage(pic.resize((w,h),Image.ANTIALIAS))
+            im = ImageTk.PhotoImage(pic.resize((disp_w,disp_h),Image.ANTIALIAS))
             label_pic.configure(image=im)
             label_pic.image = im
             label_left.configure(text=the_date())
