@@ -8,7 +8,7 @@ rclone_did2.py : Python 2.X 및 rclone 클라이언트 사용
 did2_off_omx.py : Python 2.X 및 omxplayer 프로그램으로 동영상 재생, 오프라인
 did2_rclone_omx : Python 2.X 및 rclone 클라이언트 사용, omxplayer 프로그램으로 동영상 재생
 did_rclone_omx_time : Python 2.X 및 3.X에서 동작하며 하단에 시간과 날짜가 표시됨
-did_core : Python 3.X에서 동작하는 수업용 핵심 코드
+did_core : Python 3.X에서 동작하는 수업용 핵심 코드</pre>
 
 # hardware
 <pre>1. 라즈베리파이
