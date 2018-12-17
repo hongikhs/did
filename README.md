@@ -8,7 +8,7 @@ rclone_did2.py : Python 2.X 및 rclone 클라이언트 사용
 did2_off_omx.py : Python 2.X 및 omxplayer 프로그램으로 동영상 재생, 오프라인
 did2_rclone_omx : Python 2.X 및 rclone 클라이언트 사용, omxplayer 프로그램으로 동영상 재생
 did_rclone_omx_time : Python 2.X 및 3.X에서 동작하며 하단에 시간과 날짜가 표시됨
-* rclone 클라이언트는 안정적으로 동작하며 sudo apt-get install rclone 명령으로 간단하게 설치됨</pre>
+did_core : Python 3.X에서 동작하는 수업용 핵심 코드
 
 # hardware
 <pre>1. 라즈베리파이
@@ -45,7 +45,7 @@ rclone config
 rclone sync hongikdid: .</pre>
 
 6. 프로그램 테스트
-<pre>python did_rclone_omx_time.py</pre>
+<pre>python did_xxxx.py</pre>
 
 7. 자동실행 설정
 <pre>cd ..
@@ -53,7 +53,7 @@ nano did.sh
 ##########
 cd ~/did
 rclone sync hongikdid: .
-python rclone_did2.py
+python did_xxxx.py
 ##########
 chmod +x did.sh
 nano .config/lxsession/LXDE-pi/autostart
