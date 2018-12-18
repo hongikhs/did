@@ -56,9 +56,10 @@ rclone sync hongikdid: .
 python did_xxxx.py
 ##########
 chmod +x did.sh
-nano .config/lxsession/LXDE-pi/autostart
+sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
 ##########
 @/home/pi/did.sh
+(xscreensaver 전에)
 ##########
 </pre>
 
