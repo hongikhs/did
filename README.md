@@ -47,7 +47,7 @@ rclone sync hongikdid: .</pre>
 6. 프로그램 테스트
 <pre>python did_xxxx.py</pre>
 
-7. 자동실행 설정
+7. 자동실행 설정(http://www.ktman.pe.kr/RaspberryPi/60640)
 <pre>cd ..
 nano did.sh
 ##########
