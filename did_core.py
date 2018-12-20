@@ -8,12 +8,12 @@ import os
 # 설정값
 delay = 3000
 sync_cmd = 'rclone sync hongikdid: ~/did'
-w = root.winfo_screenwidth()
-h = root.winfo_screenheight()
 
 # 창 띄우기
 root = Tk()
 root.attributes('-fullscreen', True)
+w = root.winfo_screenwidth()
+h = root.winfo_screenheight()
 
 # 첫 번째 사진 보여주기
 os.system(sync_cmd)
