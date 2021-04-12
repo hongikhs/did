@@ -35,7 +35,7 @@ IP주소 입력</pre>
 <pre>sudo apt-get install fonts-unfonts-core</pre>
 
 4. 파이썬 라이브러리 설치
-<pre>sudo apt-get install python-imaging-tk</pre>
+<pre>sudo apt-get install python3-pil.imagetk</pre>
 
 5. rclone 설치 / 설정
 <pre>sudo apt-get install rclone
